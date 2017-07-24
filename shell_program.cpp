@@ -44,11 +44,11 @@ int main()
              * Also, please do not forget to error check your exelp() system calls.
              */
 
-            if(pid == 0){                                                   // this is where child process's instructions are written
-                if(execlp(cmdBuff.c_str(), cmdBuff.c_str(), NULL) < 0){     // if execlp system call returns negative, call was unsuccessful
-                    perror("execlp: unsuccessful");
-                    exit(1);
-                }
+	    // this is where child process's instructions are written
+ 	    // if execlp system call returns negative, call was unsuccessful
+            if((pid == 0) && (execlp(cmdBuff.c_str(), cmdBuff.c_str(), NULL) < 0)){                     
+            	perror("execlp: unsuccessful");
+                exit(1);
             }else{
 
                 wait(NULL);     // if not a child, then must be a parent; parent waits here for child to terminate
